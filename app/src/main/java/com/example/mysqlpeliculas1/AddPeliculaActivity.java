@@ -37,6 +37,8 @@ public class AddPeliculaActivity extends AppCompatActivity {
     Uri imagen_seleccionada = null;
     ImageView img_add_pelicula;
 
+    //metodos--------------------------------
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -59,32 +61,20 @@ public class AddPeliculaActivity extends AppCompatActivity {
         edt_add_titulo = (EditText) findViewById(R.id.edt_edit_titulo);
         edt_add_genero = (EditText) findViewById(R.id.edt_edit_genero);
         img_add_pelicula = (ImageView) findViewById(R.id.img_add_pelicula);
-        //-------------------------------------------------------------------------
 
     }
 
-
-    public void aceptarAddPelicula(View view)
-    {
+    public void agregarNuevaPelicula(View view) {
         String identificador = String.valueOf(edt_add_id.getText()).trim();
         String titulo = String.valueOf(edt_add_titulo.getText()).trim();
         String genero = String.valueOf(edt_add_genero.getText()).trim();
         Pelicula p1 = new Pelicula(identificador,titulo,genero);
-        //------------------------------------------------------------------------
         insertarPeliculadb(p1);
-        Toast.makeText(AddPeliculaActivity.this, "Película añadida correctamente.", Toast.LENGTH_SHORT).show();
 
-        //---------------------- codigo para añadir la foto al MYSQL ------------------------------
         if(imagen_seleccionada != null) {
             insertarFotodb(p1.getIdPelicula(),img_add_pelicula);
-            Toast.makeText(AddPeliculaActivity.this, "Foto añadida correctamente.", Toast.LENGTH_SHORT).show();
         }
-//        Intent intent = new Intent(this, MostrarPeliculas.class);//-----------------------------------------------------------prueba
-//        startActivity(intent);
-
     }
-
-    //-----------------------------------------------------------------------------------------------------------------
 
     private void insertarPeliculadb(Pelicula p1) {
         StringRequest request =new StringRequest(Request.Method.POST, ConfiguracionDB.DIRECCION_URL_RAIZ + "/insertar_.php",
@@ -92,7 +82,7 @@ public class AddPeliculaActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response.equalsIgnoreCase("Datos insertados")) {
-                            Toast.makeText(AddPeliculaActivity.this, "Añadida correctamente", Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddPeliculaActivity.this, "Datos insertados correctamente", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), MostrarPeliculas.class));
                             finish();
                         } else {
@@ -109,7 +99,6 @@ public class AddPeliculaActivity extends AppCompatActivity {
 
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-
                 Map<String,String>params=new HashMap<>();
                 params.put("idPelicula",p1.getIdPelicula());
                 params.put("titulo",p1.getTitulo());
@@ -121,7 +110,7 @@ public class AddPeliculaActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(AddPeliculaActivity.this);
         requestQueue.add(request);
     }
-    //-----------------------------------------------------------------------------------------------------------------
+
     private void insertarFotodb(String idPelicula, ImageView imgNuevopFoto) {
         StringRequest request =new StringRequest(Request.Method.POST, ConfiguracionDB.DIRECCION_URL_RAIZ + "/insertar_foto.php",
                 new Response.Listener<String>() {
@@ -129,7 +118,6 @@ public class AddPeliculaActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         if (response.equalsIgnoreCase("foto insertada")) {
                             Toast.makeText(AddPeliculaActivity.this, "Foto insertada correctamente", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         } else {
                             Toast.makeText(AddPeliculaActivity.this, "No se pudo insertar la foto", Toast.LENGTH_SHORT).show();
@@ -142,7 +130,6 @@ public class AddPeliculaActivity extends AppCompatActivity {
             }
         }
         ){
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String>params=new HashMap<>();
@@ -155,15 +142,11 @@ public class AddPeliculaActivity extends AppCompatActivity {
                 return params;
             }
         };
-
-
         RequestQueue requestQueue = Volley.newRequestQueue(AddPeliculaActivity.this);
         requestQueue.add(request);
     }
 
-    //--------------------------------------------------------------------------
-    //--------CODIGO PARA CAMBIAR LA IMAGEN----------------
-    public void cambiar_imagen(View view) {
+    public void mostrar_selector_imagenes(View view) {
         Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
         getIntent.setType("image/*");
 

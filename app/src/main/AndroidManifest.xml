@@ -35,6 +35,9 @@
             android:name=".MostrarDetallesPelicula"
             android:exported="false" />
         <activity
+            android:name=".NuevoRegistroActivity"
+            android:exported="false" />
+        <activity
             android:name=".MostrarPeliculas"
             android:exported="false"
             android:noHistory="false" />

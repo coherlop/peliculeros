@@ -7,20 +7,6 @@
     android:background="@drawable/popcorn1280"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/bt_mostrar_Peliculas"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:onClick="mostrar_Peliculas"
-        android:text="mostrar Peliculas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/edt_login_email"
         android:layout_width="347dp"
@@ -60,7 +46,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginBottom="137dp"
         android:clickable="true"
-        android:onClick="registrarse"
+        android:onClick="mostrarRegistro"
         android:text="¿No tiene cuenta? Regístrese aquí"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +73,7 @@
         android:id="@+id/tvLogoApp"
         android:layout_width="296dp"
         android:layout_height="119dp"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="138dp"
         android:layout_marginBottom="82dp"
         android:fontFamily="@font/audiowide"
         android:gravity="center_horizontal|center_vertical"
@@ -97,5 +83,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_mostrar_Peliculas" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

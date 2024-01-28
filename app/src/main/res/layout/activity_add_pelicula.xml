@@ -93,7 +93,7 @@
         android:layout_marginEnd="76dp"
         android:layout_marginBottom="28dp"
         android:backgroundTint="@android:color/holo_orange_dark"
-        android:onClick="aceptarAddPelicula"
+        android:onClick="agregarNuevaPelicula"
         android:text="Añadir pelicula"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -105,7 +105,7 @@
         android:layout_marginTop="21dp"
         android:layout_marginBottom="13dp"
         android:backgroundTint="@android:color/holo_orange_dark"
-        android:onClick="mostrar_cambiar_imagen"
+        android:onClick="mostrar_selector_imagenes"
         android:text="Seleccionar imagen"
         app:layout_constraintBottom_toTopOf="@+id/edt_edit_titulo"
         app:layout_constraintEnd_toEndOf="parent"

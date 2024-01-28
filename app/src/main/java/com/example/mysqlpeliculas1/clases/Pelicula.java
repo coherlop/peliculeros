@@ -13,7 +13,6 @@ public class Pelicula implements Serializable {
         this.genero = genero;
         this.idPelicula = idPelicula;
     }
-
     public Pelicula() {
         this.titulo = "Sin titulo";
         this.genero = "Sin genero";

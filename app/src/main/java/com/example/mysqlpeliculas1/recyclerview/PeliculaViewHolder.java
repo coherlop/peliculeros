@@ -17,8 +17,8 @@ import com.example.mysqlpeliculas1.utilidades.ImagenesBlobBitmap;
 
 public class PeliculaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public static final String EXTRA_DETALLES_PELICULA = "com.example.nuevofirebasepeliculas.peliculaviewholder.detalles_pelicula" ;
-    public static final String EXTRA_DETALLES_IMAGEN_PELICULA = "com.example.nuevofirebasepeliculas.peliculaviewholder.detalles_pelicula_imagen";
+    public static final String EXTRA_DETALLES_PELICULA = "com.example.mysqlpeliculas1.recyclerview.peliculaviewholder.detalles_pelicula" ;
+    public static final String EXTRA_DETALLES_IMAGEN_PELICULA = "com.example.mysqlpeliculas1.recyclerview.peliculaviewholder.detalles_pelicula_imagen";
     
     // atributos-----------------------
     private TextView txt_item_titulo, txt_item_genero;

@@ -56,7 +56,6 @@ public class ImagenesBlobBitmap {
     // imageView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), R.id.myimage, 100, 100));
     // mas información aquí: -> https://developer.android.com/topic/performance/graphics/load-bitmap#java
 
-
     public static Bitmap decodeSampledBitmapFrombyteArray(byte[] fotob, int reqWidth, int reqHeight) {
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -70,7 +69,7 @@ public class ImagenesBlobBitmap {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeByteArray(fotob, 0, fotob.length, options);
     }
-//---------------------------------------------------------------------------------------------------------------------
+
 
     //método que convierte un blob a un Bitmap sin comprimir
     public static Bitmap blob_to_bitmap(Blob b){

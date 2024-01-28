@@ -1,6 +1,7 @@
 package com.example.mysqlpeliculas1;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,10 +42,10 @@ public class MostrarPeliculas extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-        SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.SHARED_PREFS, Context.MODE_PRIVATE); //comprobamos si te has logeado
-        String email = sharedpreferences.getString(MainActivity.EMAIL_KEY, null); //recogemos el email y el password que están en el sharedpreferences
+        SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.SHARED_PREFS, Context.MODE_PRIVATE);
+        String email = sharedpreferences.getString(MainActivity.EMAIL_KEY, null);
         String password = sharedpreferences.getString(MainActivity.PASSWORD_KEY, null);
-        if(email== null || password==null) //si no hay email ni password que recoger en sharedpreferences significa que no te has logeado
+        if(email== null || password==null)
         {
             Toast.makeText(getApplicationContext(), "debes loguearte", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -53,18 +55,16 @@ public class MostrarPeliculas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mostrar_peliculas);  //creamos rv y cargamos lista peliculas
-        //--------------------------------------------------------
+        //creamos rv y cargamos lista peliculas
+        setContentView(R.layout.activity_mostrar_peliculas);
         rv_peliculas = (RecyclerView) findViewById(R.id.rv_Peliculas);
         edt_buscar_pelicula = (EditText) findViewById(R.id.edt_buscar_titulo2);
         peliculas = new ArrayList<Pelicula>();
-
-        //-----------------------------------------------------------
         adapter = new ListaPeliculasAdapter(this,peliculas);
         rv_peliculas.setAdapter(adapter);
         mostrarPeliculas();
 
-        //-------------------------------------------------------------
+        //establecemos orientacion
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // In landscape
@@ -103,7 +103,6 @@ public class MostrarPeliculas extends AppCompatActivity {
                         catch (JSONException ex) {
                             throw new RuntimeException(ex);
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -112,8 +111,6 @@ public class MostrarPeliculas extends AppCompatActivity {
             }
         }
         ){
-
-
         };
         RequestQueue requestQueue = Volley.newRequestQueue(MostrarPeliculas.this);
         requestQueue.add(request);
@@ -122,7 +119,9 @@ public class MostrarPeliculas extends AppCompatActivity {
     public void mostrarAddPelicula(View view) {
         Intent intent = new Intent(this, AddPeliculaActivity.class);
         startActivity(intent);
+        finish();
     }
+
     public void buscarPeliculas(View view) {
         String textoBusqueda = String.valueOf(edt_buscar_pelicula.getText());
         StringRequest request =new StringRequest(Request.Method.POST, ConfiguracionDB.DIRECCION_URL_RAIZ+ "/mostrar_.php",
@@ -153,7 +152,6 @@ public class MostrarPeliculas extends AppCompatActivity {
                         catch (JSONException ex) {
                             throw new RuntimeException(ex);
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -163,11 +161,8 @@ public class MostrarPeliculas extends AppCompatActivity {
             }
         }
         ){
-
-
         };
         RequestQueue requestQueue = Volley.newRequestQueue(MostrarPeliculas.this);
         requestQueue.add(request);
     }
-
 }

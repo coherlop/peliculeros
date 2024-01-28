@@ -76,10 +76,9 @@ public class ListaPeliculasAdapter extends RecyclerView.Adapter<PeliculaViewHold
     @Override
     public void onBindViewHolder(@NonNull PeliculaViewHolder holder, int position) {
         Pelicula p = this.getPeliculas().get(position);
-        //----------------------------------------------------------------------
         holder.getTxt_item_titulo().setText(p.getTitulo());
         holder.getTxt_item_genero().setText(String.valueOf(p.getGenero()));
-        //----------- codigo para mostrar la foto de la pelicula -----------------------
+        //mostrar foto correspondiente al id
         String idPelicula = p.getIdPelicula();
         descargarImagen(idPelicula, holder.getImg_item_pelicula(), contexto);
     }
@@ -135,9 +134,5 @@ public class ListaPeliculasAdapter extends RecyclerView.Adapter<PeliculaViewHold
         return this.Peliculas.size();
     }
 
-    public void addPelicula(Pelicula peliculaAgregada) {
-        Peliculas.add(peliculaAgregada);
-        notifyDataSetChanged();
-    }
 
 }
