@@ -54,6 +54,7 @@ public class NuevoRegistroActivity extends AppCompatActivity {
                             editor.apply();
                             Toast.makeText(getApplicationContext(), "Registro existoso", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Error al registrarse", Toast.LENGTH_SHORT).show();
                             Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();

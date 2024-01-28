@@ -119,7 +119,7 @@ public class MostrarPeliculas extends AppCompatActivity {
     public void mostrarAddPelicula(View view) {
         Intent intent = new Intent(this, AddPeliculaActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     public void buscarPeliculas(View view) {
@@ -141,7 +141,7 @@ public class MostrarPeliculas extends AppCompatActivity {
                                     String titulo = object.getString("titulo");
                                     String genero = object.getString("genero");
                                     Pelicula p1 = new Pelicula(idPelicula, titulo, genero);
-                                    if(p1.getTitulo().contains(textoBusqueda)) {
+                                    if(p1.getTitulo().toLowerCase().contains(textoBusqueda.toLowerCase())) {
                                         peliculas.add(p1);
                                     }
                                 }
@@ -165,4 +165,10 @@ public class MostrarPeliculas extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(MostrarPeliculas.this);
         requestQueue.add(request);
     }
+
+    //metodo para evitar que se pulse el botón atrás
+    public void onBackPressed(){
+    }
+
+
 }

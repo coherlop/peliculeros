@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                             finish();
                             startActivity(new Intent(getApplicationContext(), MostrarPeliculas.class));
                         } else {
-                            Toast.makeText(getApplicationContext(), "error en la autenticacion", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Error en la autenticacion", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {
